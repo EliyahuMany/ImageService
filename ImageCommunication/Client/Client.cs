@@ -59,7 +59,6 @@ namespace ImageCommunication.Client {
                     while ((msg = reader.ReadLine()) != null) {
                         str.AppendLine(msg);
                     }
-                    Console.Write("yarin the king");
                     if ((msg = str.ToString()) != null) {
                         DataRecievedEventsArgs dR = new DataRecievedEventsArgs();
                         dR.Message = msg;

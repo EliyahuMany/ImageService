@@ -24,12 +24,11 @@ namespace ImageGUI.Model {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public SettingsModel() {
-            try {   
+            try {
                 m_client = Client.GetInstance;
                 m_client.DataRecieved += MessageRecieved;
                 SendCommandToService(new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, null, null));
-            } catch (Exception e) 
-            {
+            } catch (Exception e) {
                 Debug.WriteLine("problem");
             }
         }
@@ -46,6 +45,7 @@ namespace ImageGUI.Model {
         }
 
         public void MessageRecieved(object sender, DataRecievedEventsArgs e) {
+            Console.Write("\nDone!\n");
             if (e.Message.Contains("Config")) {
                 Console.Write("Config Pull");
                 JObject json = JObject.Parse(e.Message);
@@ -53,7 +53,7 @@ namespace ImageGUI.Model {
                 LogName = (string)json["LogName"];
                 SourceName = (string)json["SourceName"];
                 ThumbnailSize = (string)json["ThumbnailSize"];
-                Handlers=new ObservableCollection<string>(((string)json["Handler"]).Split(';'));
+                Handlers = new ObservableCollection<string>(((string)json["Handler"]).Split(';'));
             }
         }
         public void SendCommandToService(CommandRecievedEventArgs e) {
