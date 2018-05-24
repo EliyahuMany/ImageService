@@ -18,8 +18,13 @@ namespace ImageGUI {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+        private Settings settings;
+        private Logs logs;
+
         public MainWindow() {
             InitializeComponent();
+            this.settings = new Settings();
+            this.logs = new Logs();
         }
     }
 }

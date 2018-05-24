@@ -32,8 +32,8 @@ namespace ImageCommunication.Client {
                 client.Connect(ep);
 
                 this.streamer = client.GetStream();
-                reader = new StreamReader(streamer, Encoding.ASCII);
-                writer = new StreamWriter(streamer, Encoding.ASCII);
+                this.reader = new StreamReader(streamer, Encoding.ASCII);
+                this.writer = new StreamWriter(streamer, Encoding.ASCII);
                 Console.Write("Connection Success");
 
             }catch(Exception e) {
@@ -70,11 +70,11 @@ namespace ImageCommunication.Client {
 
         public void Send(string msg) {
             try {
-                writer.Write(msg.Trim());
-                writer.Flush();
+                this.writer.Write(msg.Trim());
+                this.writer.Flush();
             }catch(Exception e) {
                 Console.Write(e.ToString());
-            }
+            }   
         }
 
         public void Close() {

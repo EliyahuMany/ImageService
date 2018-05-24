@@ -42,7 +42,8 @@ namespace ImageCommunication {
                         Console.WriteLine("Got new connection");
                         ch = new ClientHandler(client);
                         ch.DataRecieved += this.DataRecieved;
-                        this.DataRecieved += this.Send;
+                        this.DataSend += ch.Send;
+                        ch.Start();
                     } catch (SocketException) {
                         break;
                     }
@@ -57,7 +58,7 @@ namespace ImageCommunication {
         }
 
         public void Send(Object sender, DataRecievedEventsArgs e) {
-            this.DataRecieved?.Invoke(this, e);
+            this.DataSend?.Invoke(this, e);
         }
     }
 }

@@ -45,7 +45,6 @@ namespace ImageGUI.Model {
         }
 
         public void MessageRecieved(object sender, DataRecievedEventsArgs e) {
-            Console.Write("\nDone!\n");
             if (e.Message.Contains("Config")) {
                 Console.Write("Config Pull");
                 JObject json = JObject.Parse(e.Message);
